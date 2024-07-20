@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid()) @db.Uuid
+  name     String
+  email    String @unique
+  password String
+
+  Applications Applications[]
+
+  @@map("users")
+}
+
+model HealthUnit {
+  id   String @id @default(uuid()) @db.Uuid
+  name String
+
+  Shifts Shift[]
+
+  @@map("health_unit")
+}
+
+model Shift {
+  id            String   @id @default(uuid()) @db.Uuid
+  healthUnitId  String   @map("health_unit_id") @db.Uuid
+  startDatetime DateTime @map("start_date_time")
+  endDatetime   DateTime @map("end_date_time")
+
+  healthUnit   HealthUnit     @relation(fields: [healthUnitId], references: [id])
+  Applications Applications[]
+
+  @@map("shift")
+}
+
+model Applications {
+  id      String @id @default(uuid()) @db.Uuid
+  shiftId String @map("shift_id") @db.Uuid
+  userId  String @map("user_id") @db.Uuid
+
+  shift Shift @relation(fields: [shiftId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  @@map("applications")
+}
