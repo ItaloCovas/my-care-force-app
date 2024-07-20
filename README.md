@@ -58,6 +58,12 @@ npx prisma migrate deploy
 yarn seed
 ````
 
+## Informações adicionais
+- Você pode acessar a pasta */files* na raíz do projeto para buscar 
+- Você pode ver o seu login no arquivo *seed.ts*, na pasta *server*.
+
+# FRONTEND
+
 ## Iniciar o servidor
 ````
 yarn start
