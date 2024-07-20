@@ -1,24 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../shared/database/prisma.service';
+import { hash } from 'bcryptjs';
 
 @Injectable()
 export class SeedService {
   constructor(private readonly prisma: PrismaService) {}
 
   async runSeed() {
+    const hashedPassword1 = await hash('fabio12345', 12);
+
     await this.prisma.user.create({
       data: {
         name: 'Fabio Morais',
         email: 'fabiomorais1@example.com',
-        password: 'fabio12345',
+        password: hashedPassword1,
       },
     });
+
+    const hashedPassword2 = await hash('joao12345', 12);
 
     await this.prisma.user.create({
       data: {
         name: 'João Apura',
         email: 'joaoapura@example.com',
-        password: 'joao12345',
+        password: hashedPassword2,
       },
     });
 
