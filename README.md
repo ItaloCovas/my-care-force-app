@@ -31,6 +31,9 @@ cd my-care-force-app
 
 ## Instalar dependências
 ````
+cd server
+````
+````
 yarn install
 ````
 
