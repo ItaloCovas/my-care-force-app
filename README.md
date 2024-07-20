@@ -38,7 +38,7 @@ yarn install
 ````
 
 ## Configurar variáveis de ambiente
-Crie e edite o arquivo .env na raíz do seu projeto. <br/>
+Crie e edite o arquivo .env na raíz do seu projeto (dentro da pasta server). <br/>
 Os exemplos das variáveis que você precisa estão no .env.example <br/> <br/>
 **A chave *DATABASE_URL* deve ser colocada do seguinte modo =>** postgresql://admin:root@localhost:5432/my_care_force?schema=public  <br/> <br/>
 **A chave *JWT_SECRET* pode ser aleatória, mas recomendo que coloque algo não relacionado a nada do projeto, como um hash gerado aleatoriamente.** <br/>
