@@ -7,6 +7,7 @@ import { AuthGuard } from './modules/auth/auth.guard';
 import { HealthUnitModule } from './modules/health-unit/health-unit.module';
 import { ShiftModule } from './modules/shift/shift.module';
 import { ApplicationsModule } from './modules/applications/applications.module';
+import { SeedModule } from './modules/seed/seed.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ApplicationsModule } from './modules/applications/applications.module';
     HealthUnitModule,
     ShiftModule,
     ApplicationsModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [{ provide: APP_GUARD, useClass: AuthGuard }],

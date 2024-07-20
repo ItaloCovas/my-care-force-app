@@ -9,6 +9,7 @@ import { ApplicationsRepository } from './repositories/applications.repository';
 @Module({
   providers: [
     PrismaService,
+
     UsersRepository,
     HealthUnitRepository,
     ShiftRepository,
