@@ -10,14 +10,6 @@ Para rodar a aplicação, vamos começar criando o container do Docker para faci
 docker run --name my-care-force-postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=root -p 5432:5432 -d postgres
 ````
 
-## Clonar o repositório
-````
-git clone https://github.com/ItaloCovas/my-care-force-app
-````
-````
-cd my-care-force-app
-````
-
 ## Acessar o container e criar a base de dados
 ````
 docker exec -it my-care-force-postgres psql -U admin
@@ -28,6 +20,15 @@ CREATE DATABASE my_care_force;
 ````
 \q
 ````
+
+## Clonar o repositório
+````
+git clone https://github.com/ItaloCovas/my-care-force-app
+````
+````
+cd my-care-force-app
+````
+
 ## Instalar dependências
 ````
 yarn install
