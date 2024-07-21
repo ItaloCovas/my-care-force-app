@@ -40,13 +40,11 @@ export function useSignIn() {
     try {
       setIsLoading(true);
       const authData = await usersService.signInUser(data);
-      console.log(authData, "kkk");
       setIsLoading(false);
       signIn(authData!);
       reset();
       toast.success("Login efetuado com sucesso.");
     } catch {
-      console.log("ctachei");
       setIsLoading(false);
       toast.error("Credenciais inválidas, tente novamente.");
     }

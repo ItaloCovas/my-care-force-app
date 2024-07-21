@@ -1,5 +1,5 @@
 import { createContext, useCallback, useState } from "react";
-import { SignInAdminData } from "../../types/auth.types";
+import { SignInAdminData } from "../../types/auth.type";
 import toast from "react-hot-toast";
 
 export interface AuthContextProps {

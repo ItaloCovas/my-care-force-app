@@ -1,3 +1,13 @@
+import { Header } from "../../components/Header";
+import { useDashboard } from "./useDashboard";
+
 export function Dashboard() {
-  return <div>Dashboard</div>;
+  const { healthUnits } = useDashboard();
+
+  console.log(healthUnits);
+  return (
+    <main>
+      <Header />
+    </main>
+  );
 }

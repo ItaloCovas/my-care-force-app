@@ -13,8 +13,6 @@ export function PrivateRoute({ isPrivate }: PrivateRouteProps) {
     checkExpirationDate();
   }, [checkExpirationDate]);
 
-  console.log(signedIn, isPrivate);
-
   if (!signedIn && isPrivate) {
     return <Navigate to="/sign-in" replace />;
   }
