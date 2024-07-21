@@ -1,7 +1,7 @@
 import { api } from "../api";
 
 export interface SignInUserParams {
-  ra: string;
+  email: string;
   password: string;
 }
 
@@ -11,7 +11,7 @@ export interface SignInUserResponse {
 }
 
 export async function signInUser(signInData: SignInUserParams) {
-  const data = await api.post<SignInUserResponse>("/user/scrape", signInData);
+  const data = await api.post<SignInUserResponse>("auth/sign-in", signInData);
 
-  console.log(data, "DEITAAA");
+  return data.data;
 }

@@ -3,6 +3,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { usersService } from "../../../shared/services/authService";
+import { useAuth } from "../../../shared/context/AuthContext/useAuth";
 
 const schema = z.object({
   email: z
@@ -15,6 +17,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function useSignIn() {
+  const { signIn } = useAuth();
+
   const {
     register,
     handleSubmit: hookFormSubmit,
@@ -33,16 +37,16 @@ export function useSignIn() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = hookFormSubmit(async (data: FormData) => {
-    console.log(data, "edaksdsk");
     try {
       setIsLoading(true);
-      //   const authData = await usersService.signInAdmin(data);
-      //   setIsLoading(false);
-      //   signInAdmin(authData!);
+      const authData = await usersService.signInUser(data);
+      console.log(authData, "kkk");
+      setIsLoading(false);
+      signIn(authData!);
       reset();
       toast.success("Login efetuado com sucesso.");
-      //   navigate('/admin/classes', { replace: true });
     } catch {
+      console.log("ctachei");
       setIsLoading(false);
       toast.error("Credenciais inválidas, tente novamente.");
     }

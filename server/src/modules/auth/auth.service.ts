@@ -33,7 +33,7 @@ export class AuthService {
 
     const accessToken = await this.generateAccessToken(user.id);
 
-    return { accessToken };
+    return { accessToken, expiresIn: 86400 };
   }
 
   async signUp(signUpDto: SignUpDto) {
