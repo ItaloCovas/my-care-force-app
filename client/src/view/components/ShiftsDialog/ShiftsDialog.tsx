@@ -3,6 +3,8 @@ import { Shift } from "../../../shared/types/health-unit.type";
 import { HealthUnit } from "../HealthUnit";
 import { formatDate } from "../../../shared/utils/formatDate";
 import { useShiftsDialog } from "./useShiftsDialog";
+import { cn } from "../../../shared/utils/cn";
+import { Spinner } from "../Spinner";
 
 interface ShiftsDialogProps {
   name: string;
@@ -11,7 +13,15 @@ interface ShiftsDialogProps {
 }
 
 export function ShiftsDialog({ name, shifts, id }: ShiftsDialogProps) {
-  const { open, handleOpenChange, isShiftEligible } = useShiftsDialog();
+  const {
+    open,
+    handleOpenChange,
+    isShiftEligible,
+    createApplication,
+    createApplicationLoading,
+    loadingShiftId,
+    user,
+  } = useShiftsDialog();
 
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
@@ -42,26 +52,34 @@ export function ShiftsDialog({ name, shifts, id }: ShiftsDialogProps) {
               return (
                 <div
                   key={shift.startDatetime}
-                  className={`${shiftClass} p-2 rounded-lg text-white flex justify-between cursor-pointer`}
+                  onClick={
+                    isShiftEligible(shift) && user
+                      ? () => createApplication(shift.id, user?.id)
+                      : undefined
+                  }
+                  className={cn(
+                    "p-2 rounded-lg text-white flex cursor-pointer",
+                    shiftClass,
+                    createApplicationLoading &&
+                      loadingShiftId === shift.startDatetime
+                      ? "justify-center"
+                      : "justify-between"
+                  )}
                 >
-                  <span>{formattedStartDatetime}</span>
-                  <span>{formattedEndDatetime}</span>
+                  {createApplicationLoading &&
+                  loadingShiftId === shift.startDatetime ? (
+                    <Spinner />
+                  ) : (
+                    <>
+                      <span>{formattedStartDatetime}</span>
+                      <span>{formattedEndDatetime}</span>
+                    </>
+                  )}
                 </div>
               );
             })}
           </div>
-          <div className="mt-[25px] flex justify-end">
-            <Dialog.Close asChild>
-              <button className="inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:outline-none">
-                Cancelar
-              </button>
-            </Dialog.Close>
-            <Dialog.Close asChild>
-              <button className="inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:outline-none">
-                Save changes
-              </button>
-            </Dialog.Close>
-          </div>
+
           <Dialog.Close asChild>
             <button
               className="absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:outline-none"
