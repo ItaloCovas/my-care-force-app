@@ -2,11 +2,11 @@
 import { useMemo } from "react";
 import * as RdxTabs from "@radix-ui/react-tabs";
 import { motion, AnimatePresence } from "framer-motion";
-import { HealthUnit } from "./HealthUnit";
 import { HealthUnit as HealthUnitType } from "../../shared/types/health-unit.type";
 import { Spinner } from "./Spinner";
 import { Application } from "../../shared/types/application.type";
 import { Application as ApplicationComponent } from "./Application";
+import { ShiftsDialog } from "./ShiftsDialog/ShiftsDialog";
 
 interface TabsProps {
   healthUnits: HealthUnitType[];
@@ -71,9 +71,10 @@ export function Tabs({
               <div className="flex flex-wrap gap-4 text-center">
                 {healthUnits?.map((healthUnit) => {
                   return (
-                    <HealthUnit
+                    <ShiftsDialog
                       name={healthUnit.name}
                       shifts={healthUnit.Shifts}
+                      id={healthUnit.id}
                       key={healthUnit.id}
                     />
                   );

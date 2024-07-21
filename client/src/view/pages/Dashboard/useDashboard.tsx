@@ -20,7 +20,7 @@ export function useDashboard() {
     try {
       setHealthUnitsLoading(true);
       // Pelo fato de rodar local e responder muito rápido, simular o loading por mais tempo
-      setTimeout(() => {}, 2000);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const healthUnitsRes = await healthUnitService.listHealthUnits();
       setHealthUnits(healthUnitsRes);
       setHealthUnitsLoading(false);
@@ -33,7 +33,7 @@ export function useDashboard() {
     try {
       setApplicationsLoading(true);
       // Pelo fato de rodar local e responder muito rápido, simular o loading por mais tempo
-      setTimeout(() => {}, 2000);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const applicationsRes = await applicationService.listApplications();
       setApplications(applicationsRes);
       setApplicationsLoading(false);
