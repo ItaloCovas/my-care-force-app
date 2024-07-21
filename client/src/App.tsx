@@ -1,10 +1,11 @@
-import { SignIn } from "./view/pages/SignIn/SignIn";
+import { Router } from "./router/router";
+import { AuthProvider } from "./shared/context/AuthContext/AuthContext";
 
 function App() {
   return (
-    <>
-      <SignIn />
-    </>
+    <AuthProvider>
+      <Router />
+    </AuthProvider>
   );
 }
 
