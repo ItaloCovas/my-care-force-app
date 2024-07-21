@@ -5,6 +5,7 @@ import { applicationService } from "../../../shared/services/applicationService"
 import { User } from "../../../shared/types/user.type";
 import { usersService } from "../../../shared/services/usersService";
 import toast from "react-hot-toast";
+import { useApplications } from "../../../shared/context/ApplicationsContext/useApplications";
 
 export function useShiftsDialog() {
   const [open, setOpen] = useState(false);
@@ -12,6 +13,7 @@ export function useShiftsDialog() {
     useState<boolean>(false);
   const [loadingShiftId, setLoadingShiftId] = useState<string | null>(null);
   const [user, setUser] = useState<User>();
+  const { refreshApplications } = useApplications();
 
   useEffect(() => {
     loadUserId();
@@ -34,8 +36,9 @@ export function useShiftsDialog() {
       setLoadingShiftId(shiftId);
       await applicationService.createApplication({ shiftId, userId });
       setCreateApplicationLoading(false);
+      refreshApplications();
       handleOpenChange(false);
-      toast.error("Você aplicou ao turno com sucesso. Parabéns!");
+      toast.success("Você aplicou ao turno com sucesso. Parabéns!");
     } catch (e: any) {
       setCreateApplicationLoading(false);
       handleOpenChange(false);

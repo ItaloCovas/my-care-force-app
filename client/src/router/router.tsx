@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SignIn } from "../view/pages/SignIn/SignIn";
 import { PrivateRoute } from "./PrivateRoute";
 import { Dashboard } from "../view/pages/Dashboard/Dashboard";
@@ -14,6 +14,7 @@ export function Router() {
         <Route element={<PrivateRoute isPrivate />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );

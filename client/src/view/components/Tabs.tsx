@@ -1,26 +1,19 @@
-"use client";
 import { useMemo } from "react";
 import * as RdxTabs from "@radix-ui/react-tabs";
 import { motion, AnimatePresence } from "framer-motion";
-import { HealthUnit as HealthUnitType } from "../../shared/types/health-unit.type";
 import { Spinner } from "./Spinner";
-import { Application } from "../../shared/types/application.type";
 import { Application as ApplicationComponent } from "./Application";
 import { ShiftsDialog } from "./ShiftsDialog/ShiftsDialog";
+import { HealthUnit as HealthUnitType } from "../../shared/types/health-unit.type";
+import { useApplications } from "../../shared/context/ApplicationsContext/useApplications";
 
 interface TabsProps {
   healthUnits: HealthUnitType[];
   healthUnitsLoading: boolean;
-  applications: Application[];
-  applicationsLoading: boolean;
 }
 
-export function Tabs({
-  healthUnits,
-  healthUnitsLoading,
-  applications,
-  applicationsLoading,
-}: TabsProps) {
+export function Tabs({ healthUnits, healthUnitsLoading }: TabsProps) {
+  const { applications, applicationsLoading } = useApplications();
   const tabContentVariants = useMemo(
     () => ({
       initial: { opacity: 0, y: 10 },
