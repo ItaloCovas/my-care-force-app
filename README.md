@@ -66,13 +66,36 @@ yarn start
 ## Informações adicionais
 - Você pode acessar a pasta */files* na raíz do projeto para buscar 
 - Você pode ver o seu login no arquivo *seed.service.ts*, no diretório */server/src/modules/seed*.
+<br/>
 
 # FRONTEND
 
 ## Instalação de pacotes iniciais 
-- Entre na pasta */client* e execute:
+Entre na pasta */client* e execute:
 ````
 yarn install
 ````
+
+## Configuração do ambiente
+Atualmente não é necessário nenhuma configuração. Subi o env apenas com a URL da API do Backend. Apenas não trocar a porta.
+
+## Iniciar o projeto
+Agora inicie o projeto
+````
+yarn dev
+````
+
+**NÃO SE ESQUEÇA DE ESTAR COM A API EM EXECUÇÃO, CASO CONTRÁRIO NÃO IRÁ FUNCIONAR**
+
+# Considerações finais
+
+- O projeto foi bem divertido de ser feito, fortaleci vários conceitos principalmente no Backend, que é onde tenho mais dificuldade;
+- Todas as dificuldades foram superadas e consegui desenvolver o projeto;
+- Na parte do backend eu deveria ter dividido as migrations para cada entidade para facilitar o rollback caso houvessem erros;
+- Na parte do backend eu deveria ter commitado mais frequentemente;
+- Devido a demandas da semana, iniciei o projeto no dia 19, assim não podendo fazer as coisas listadas acima devido ao tempo;
+  <br/> </br>
+
+  **OBRIGADO PELO SEU TEMPO!!**
 
 
