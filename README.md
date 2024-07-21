@@ -58,13 +58,21 @@ npx prisma migrate deploy
 yarn seed
 ````
 
+## Iniciar o servidor
+````
+yarn start
+````
+
 ## Informações adicionais
 - Você pode acessar a pasta */files* na raíz do projeto para buscar 
 - Você pode ver o seu login no arquivo *seed.service.ts*, no diretório */server/src/modules/seed*.
 
 # FRONTEND
 
-## Iniciar o servidor
+## Instalação de pacotes iniciais 
+- Entre na pasta */client* e execute:
 ````
-yarn start
+yarn install
 ````
+
+
