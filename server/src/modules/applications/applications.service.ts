@@ -38,6 +38,12 @@ export class ApplicationsService {
       throw new BadRequestException('Shift not found.');
     }
 
+    if (shift.endDatetime <= new Date()) {
+      throw new BadRequestException(
+        'Cannot register for a shift that has already finished.',
+      );
+    }
+
     if (shift.startDatetime <= new Date()) {
       throw new BadRequestException(
         'Cannot register for a shift that has already started.',
@@ -48,6 +54,28 @@ export class ApplicationsService {
       data: createApplicationDto,
       include: {
         shift: true,
+        user: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+          },
+        },
+      },
+    });
+  }
+
+  findUserById(userId: string) {
+    return this.applicationsRepository.findAll({
+      where: {
+        userId,
+      },
+      include: {
+        shift: {
+          include: {
+            healthUnit: true,
+          },
+        },
         user: {
           select: {
             id: true,
