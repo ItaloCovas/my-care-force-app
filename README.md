@@ -71,7 +71,10 @@ yarn start
 # FRONTEND
 
 ## Instalação de pacotes iniciais 
-Entre na pasta */client* e execute:
+Execute os comandos a partir da raíz do projeto
+````
+cd client
+````
 ````
 yarn install
 ````
