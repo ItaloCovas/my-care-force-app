@@ -42,16 +42,32 @@ export class SeedService {
     await this.prisma.shift.create({
       data: {
         healthUnitId: healthUnit1.id,
-        startDatetime: new Date('2024-07-09T08:00:00Z'),
+        startDatetime: new Date('2024-07-25T08:00:00Z'),
+        endDatetime: new Date('2024-07-30T12:00:00Z'),
+      },
+    });
+
+    await this.prisma.shift.create({
+      data: {
+        healthUnitId: healthUnit1.id,
+        startDatetime: new Date('2024-07-09T09:00:00Z'),
         endDatetime: new Date('2024-07-25T16:00:00Z'),
       },
     });
 
     await this.prisma.shift.create({
       data: {
+        healthUnitId: healthUnit1.id,
+        startDatetime: new Date('2024-07-28T08:00:00Z'),
+        endDatetime: new Date('2024-07-29T11:00:00Z'),
+      },
+    });
+
+    await this.prisma.shift.create({
+      data: {
         healthUnitId: healthUnit2.id,
-        startDatetime: new Date('2024-07-20T08:00:00Z'),
-        endDatetime: new Date('2024-07-30T16:00:00Z'),
+        startDatetime: new Date('2024-07-24T02:00:00Z'),
+        endDatetime: new Date('2024-07-30T12:00:00Z'),
       },
     });
 
