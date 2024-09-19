@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { HealthUnitService } from './health-unit.service';
 import { CreateHealthUnitDto } from './dto/create-health-unit.dto';
 
@@ -12,7 +12,7 @@ export class HealthUnitController {
   }
 
   @Get()
-  findAll() {
-    return this.healthUnitService.findAll();
+  findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 10) {
+    return this.healthUnitService.findAll({ page, limit });
   }
 }

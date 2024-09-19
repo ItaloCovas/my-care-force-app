@@ -1,6 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { ImSad } from "react-icons/im";
-import { Shift } from "../../../shared/types/health-unit.type";
 import { HealthUnit } from "../HealthUnit";
 import { formatDate } from "../../../shared/utils/formatDate";
 import { useShiftsDialog } from "./useShiftsDialog";
@@ -9,7 +8,6 @@ import { Spinner } from "../Spinner";
 
 interface ShiftsDialogProps {
   name: string;
-  shifts: Shift[];
   id: string;
 }
 

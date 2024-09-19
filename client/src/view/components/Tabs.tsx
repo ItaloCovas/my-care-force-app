@@ -66,7 +66,6 @@ export function Tabs({ healthUnits, healthUnitsLoading }: TabsProps) {
                   return (
                     <ShiftsDialog
                       name={healthUnit.name}
-                      shifts={healthUnit.Shifts}
                       id={healthUnit.id}
                       key={healthUnit.id}
                     />
