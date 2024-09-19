@@ -16,6 +16,12 @@ export class ShiftService {
     });
   }
 
+  findById(id: string) {
+    return this.shiftRepository.findUnique({
+      where: { id },
+    });
+  }
+
   findAll() {
     return this.shiftRepository.findAll();
   }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { ShiftService } from './shift.service';
 import { CreateShiftDto } from './dto/create-shift.dto';
 
@@ -9,6 +9,11 @@ export class ShiftController {
   @Post()
   create(@Body() createShiftDto: CreateShiftDto) {
     return this.shiftService.create(createShiftDto);
+  }
+
+  @Get(':id')
+  findById(@Param('id') id: string) {
+    return this.shiftService.findById(id);
   }
 
   @Get()
