@@ -17,7 +17,6 @@ export class HealthUnitService {
       select: {
         id: true,
         name: true,
-        Shifts: true,
       },
     });
   }

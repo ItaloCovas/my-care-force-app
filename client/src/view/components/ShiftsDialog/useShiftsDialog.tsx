@@ -6,21 +6,47 @@ import { User } from "../../../shared/types/user.type";
 import { usersService } from "../../../shared/services/usersService";
 import toast from "react-hot-toast";
 import { useApplications } from "../../../shared/context/ApplicationsContext/useApplications";
+import { shiftsService } from "../../../shared/services/shiftsService";
 
-export function useShiftsDialog() {
+interface UseShiftsDialogProps {
+  id: string;
+}
+
+export function useShiftsDialog({ id }: UseShiftsDialogProps) {
   const [open, setOpen] = useState(false);
   const [createApplicationLoading, setCreateApplicationLoading] =
     useState<boolean>(false);
   const [loadingShiftId, setLoadingShiftId] = useState<string | null>(null);
   const [user, setUser] = useState<User>();
+  const [shifts, setShifts] = useState<Shift[]>();
+  const [shiftsLoading, setShiftsLoading] = useState<boolean>(false);
   const { refreshApplications } = useApplications();
 
   useEffect(() => {
     loadUserId();
   }, []);
 
+  // prolly callback
   function handleOpenChange(isOpen: boolean) {
+    if (isOpen) {
+      loadShiftsByHealthUnit(id);
+    } else {
+      setShifts([]);
+    }
     setOpen(isOpen);
+  }
+
+  async function loadShiftsByHealthUnit(id: string) {
+    try {
+      setShiftsLoading(true);
+      // Pelo fato de rodar local e responder muito rápido, simular o loading por mais tempo
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const shiftsRes = await shiftsService.listShiftsByHealthUnit(id);
+      setShifts(shiftsRes);
+      setShiftsLoading(false);
+    } catch (e) {
+      setShiftsLoading(false);
+    }
   }
 
   function isShiftEligible(shift: Shift) {
@@ -72,5 +98,7 @@ export function useShiftsDialog() {
     createApplicationLoading,
     loadingShiftId,
     user,
+    shifts,
+    shiftsLoading,
   };
 }

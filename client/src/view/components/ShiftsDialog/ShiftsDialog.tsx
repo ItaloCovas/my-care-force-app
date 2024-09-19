@@ -13,7 +13,7 @@ interface ShiftsDialogProps {
   id: string;
 }
 
-export function ShiftsDialog({ name, shifts, id }: ShiftsDialogProps) {
+export function ShiftsDialog({ name, id }: ShiftsDialogProps) {
   const {
     open,
     handleOpenChange,
@@ -22,14 +22,15 @@ export function ShiftsDialog({ name, shifts, id }: ShiftsDialogProps) {
     createApplicationLoading,
     loadingShiftId,
     user,
-  } = useShiftsDialog();
+    shifts,
+    shiftsLoading,
+  } = useShiftsDialog({ id });
 
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       <Dialog.Trigger asChild>
         <HealthUnit
           name={name}
-          shifts={shifts}
           key={id}
           onClick={() => handleOpenChange(true)}
         />
@@ -37,7 +38,11 @@ export function ShiftsDialog({ name, shifts, id }: ShiftsDialogProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="bg-gray-100/50 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-          {shifts.length > 0 ? (
+          {shiftsLoading ? (
+            <div className="flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : shifts && shifts.length > 0 ? (
             <>
               <Dialog.Title className="m-0 text-[17px] text-center font-medium">
                 Aplicar a um turno
@@ -55,8 +60,9 @@ export function ShiftsDialog({ name, shifts, id }: ShiftsDialogProps) {
               <ImSad className="text-[#4062F9] w-8 h-8" />
             </div>
           )}
+
           <div className="flex flex-col gap-y-4">
-            {shifts.map((shift) => {
+            {shifts?.map((shift) => {
               const formattedStartDatetime = formatDate(shift.startDatetime);
               const formattedEndDatetime = formatDate(shift.endDatetime);
               const shiftClass = isShiftEligible(shift)

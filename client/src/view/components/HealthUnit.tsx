@@ -1,14 +1,12 @@
 import React, { HTMLAttributes } from "react";
 import { MdOutlineHealthAndSafety } from "react-icons/md";
-import { Shift } from "../../shared/types/health-unit.type";
 
 interface HealthUnitProps extends HTMLAttributes<HTMLDivElement> {
   name: string;
-  shifts: Shift[];
 }
 
 export const HealthUnit = React.forwardRef<HTMLDivElement, HealthUnitProps>(
-  ({ name, shifts, ...props }, ref) => {
+  ({ name, ...props }, ref) => {
     return (
       <div
         ref={ref}

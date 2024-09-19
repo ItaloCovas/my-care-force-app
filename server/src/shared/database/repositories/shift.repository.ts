@@ -14,6 +14,10 @@ export class ShiftRepository {
     return this.prismaService.shift.findUnique(findUniqueDto);
   }
 
+  findMany(findManyDto: Prisma.ShiftFindManyArgs) {
+    return this.prismaService.shift.findMany(findManyDto);
+  }
+
   findAll() {
     return this.prismaService.shift.findMany();
   }

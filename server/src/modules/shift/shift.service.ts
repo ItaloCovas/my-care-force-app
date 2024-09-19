@@ -8,7 +8,13 @@ export class ShiftService {
 
   create(createShiftDto: CreateShiftDto) {
     return this.shiftRepository.create({
-      data: createShiftDto,
+      data: {
+        startDatetime: createShiftDto.startDatetime,
+        endDatetime: createShiftDto.endDatetime,
+        healthUnit: {
+          connect: { id: createShiftDto.healthUnitId },
+        },
+      },
       include: {
         healthUnit: true,
         Applications: true,
@@ -17,8 +23,8 @@ export class ShiftService {
   }
 
   findById(id: string) {
-    return this.shiftRepository.findUnique({
-      where: { id },
+    return this.shiftRepository.findMany({
+      where: { healthUnitId: id },
     });
   }
 
