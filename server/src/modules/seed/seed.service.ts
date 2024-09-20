@@ -27,74 +27,45 @@ export class SeedService {
       },
     });
 
-    const healthUnit1 = await this.prisma.healthUnit.create({
-      data: {
-        name: 'Hospital Central',
-      },
-    });
+    const healthUnits = [];
+    for (let i = 1; i <= 30; i++) {
+      const healthUnit = await this.prisma.healthUnit.create({
+        data: {
+          name: `Hospital-${i}`,
+        },
+      });
+      healthUnits.push(healthUnit);
+    }
 
-    const healthUnit2 = await this.prisma.healthUnit.create({
-      data: {
-        name: 'Clinica do Sul',
-      },
-    });
+    for (const healthUnit of healthUnits) {
+      // Shifts valid under the specified conditions
+      const futureDate1 = new Date();
+      futureDate1.setDate(futureDate1.getDate() + 1); // start 1 day from now
+      const futureDate2 = new Date(futureDate1);
+      futureDate2.setDate(futureDate2.getDate() + 2); // end 3 days from now
 
-    await this.prisma.shift.create({
-      data: {
-        healthUnitId: healthUnit1.id,
-        startDatetime: new Date('2024-07-25T08:00:00Z'),
-        endDatetime: new Date('2024-07-30T12:00:00Z'),
-      },
-    });
+      const futureDate3 = new Date();
+      futureDate3.setDate(futureDate3.getDate() + 4); // start 4 days from now
+      const futureDate4 = new Date(futureDate3);
+      futureDate4.setDate(futureDate4.getDate() + 1); // end 5 days from now
 
-    await this.prisma.shift.create({
-      data: {
-        healthUnitId: healthUnit1.id,
-        startDatetime: new Date('2024-07-09T09:00:00Z'),
-        endDatetime: new Date('2024-07-25T16:00:00Z'),
-      },
-    });
+      await this.prisma.shift.create({
+        data: {
+          healthUnitId: healthUnit.id,
+          startDatetime: futureDate1,
+          endDatetime: futureDate2,
+        },
+      });
 
-    await this.prisma.shift.create({
-      data: {
-        healthUnitId: healthUnit1.id,
-        startDatetime: new Date('2024-07-28T08:00:00Z'),
-        endDatetime: new Date('2024-07-29T11:00:00Z'),
-      },
-    });
+      await this.prisma.shift.create({
+        data: {
+          healthUnitId: healthUnit.id,
+          startDatetime: futureDate3,
+          endDatetime: futureDate4,
+        },
+      });
+    }
 
-    await this.prisma.shift.create({
-      data: {
-        healthUnitId: healthUnit2.id,
-        startDatetime: new Date('2024-07-24T02:00:00Z'),
-        endDatetime: new Date('2024-07-30T12:00:00Z'),
-      },
-    });
-
-    await this.prisma.shift.create({
-      data: {
-        healthUnitId: healthUnit2.id,
-        startDatetime: new Date('2023-08-02T08:00:00Z'),
-        endDatetime: new Date('2023-08-02T16:00:00Z'),
-      },
-    });
-
-    // Não vou criar as aplicações para poderem fazer este fluxo no Front!
-
-    // await this.prisma.applications.create({
-    //   data: {
-    //     shiftId: shift1.id,
-    //     userId: user1.id,
-    //   },
-    // });
-
-    // await this.prisma.applications.create({
-    //   data: {
-    //     shiftId: shift2.id,
-    //     userId: user2.id,
-    //   },
-    // });
-
-    console.log('Database seeded!');
+    console.log('Database seeded with users, health units, and valid shifts!');
   }
 }
