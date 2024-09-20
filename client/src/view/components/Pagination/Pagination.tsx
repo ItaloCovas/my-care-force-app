@@ -30,7 +30,11 @@ export function Pagination({
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationLink href="#" isActive>
+          <PaginationLink
+            href="#"
+            isActive
+            className="!bg-[#4062F9] text-white border-none"
+          >
             {currentPage}
           </PaginationLink>
         </PaginationItem>

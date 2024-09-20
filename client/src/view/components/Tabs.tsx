@@ -67,9 +67,11 @@ export function Tabs() {
             exit="exit"
           >
             {healthUnitsLoading ? (
-              <Spinner />
+              <div className="flex justify-center items-center h-[37vh]">
+                <Spinner />
+              </div>
             ) : (
-              <div className="flex justify-center md:justify-start flex-wrap gap-4 text-center">
+              <div className="flex justify-center md:justify-start flex-wrap gap-4 text-center mb-10">
                 {healthUnits?.map((healthUnit: HealthUnitType) => {
                   return (
                     <ShiftsDialog
@@ -79,15 +81,15 @@ export function Tabs() {
                     />
                   );
                 })}
-                <Pagination
-                  currentPage={currentPage}
-                  hasMore={hasMore}
-                  onPageChange={handlePageChange}
-                  onNextPage={handleNextPage}
-                  onPreviousPage={handlePreviousPage}
-                />
               </div>
             )}
+            <Pagination
+              currentPage={currentPage}
+              hasMore={hasMore}
+              onPageChange={handlePageChange}
+              onNextPage={handleNextPage}
+              onPreviousPage={handlePreviousPage}
+            />
           </motion.div>
         </RdxTabs.Content>
         <RdxTabs.Content

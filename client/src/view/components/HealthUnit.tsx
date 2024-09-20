@@ -11,7 +11,7 @@ export const HealthUnit = React.forwardRef<HTMLDivElement, HealthUnitProps>(
       <div
         ref={ref}
         {...props}
-        className={`min-w-[300px] border-[#4062F9] border bg-white pb-4 pt-2 rounded-lg flex flex-col items-center justify-center cursor-pointer ${props.className}`}
+        className={`min-w-[300px] border-[#4062F9] border bg-white pb-4 pt-2 rounded-lg flex flex-col items-center justify-center cursor-pointer ${props.className} select-none`}
       >
         <span>{name}</span>
         <MdOutlineHealthAndSafety className="text-[#4062F9] w-10 h-10 mt-4" />

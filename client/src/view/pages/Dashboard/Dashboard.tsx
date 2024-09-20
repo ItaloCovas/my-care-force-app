@@ -5,7 +5,7 @@ import { Tabs } from "../../components/Tabs";
 export function Dashboard() {
   return (
     <ApplicationsProvider>
-      <main className="h-screen bg-zinc-50">
+      <main className="h-screen bg-zinc-50 select-none">
         <Header />
         <section className="py-10 px-5 w-full">
           <Tabs />
