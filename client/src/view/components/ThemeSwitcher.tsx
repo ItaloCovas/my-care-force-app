@@ -9,12 +9,12 @@ export function ThemeSwitcher() {
       {theme === "dark" ? (
         <RxSun
           onClick={() => setTheme("light")}
-          className="h-7 w-7 cursor-pointer text-[#F3C432] hover:text-[#3F4347] hover:transition hover:duration-500 hover:ease-in-out absolute top-6 right-[60px]"
+          className="h-7 w-7 cursor-pointer text-[#F3C432] hover:text-[#3F4347] hover:transition hover:duration-500 hover:ease-in-out"
         />
       ) : (
         <RxMoon
           onClick={() => setTheme("dark")}
-          className="h-7 w-7 cursor-pointer text-[#3F4347] hover:text-[#F3C432] hover:transition hover:duration-500 hover:ease-in-out absolute top-6 right-[60px]"
+          className="h-7 w-7 cursor-pointer text-[#3F4347] hover:text-[#F3C432] hover:transition hover:duration-500 hover:ease-in-out"
         />
       )}
     </div>

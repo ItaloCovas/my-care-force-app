@@ -1,3 +1,4 @@
+import { ThemeSwitcher } from "@/view/components/ThemeSwitcher";
 import logo from "../../../assets/img/logo.png";
 import { Input } from "../../components/Input";
 import { Spinner } from "../../components/Spinner";
@@ -7,8 +8,9 @@ export function SignIn() {
   const { register, errors, handleSubmit, isLoading } = useSignIn();
 
   return (
-    <main className="h-screen w-full bg-zinc-50 flex justify-center items-center px-6 md:px-0">
-      <div className="bg-white w-[500px] py-16 pb-10 px-6 rounded-lg border-[#4062F9] border-2 ">
+    <main className="h-screen w-full bg-zinc-50 dark:bg-zinc-800 flex flex-col justify-center items-center px-6 md:px-0 relative select-none">
+      <ThemeSwitcher />
+      <div className="bg-white dark:bg-zinc-900/30 w-[500px] py-16 pb-10 px-6 rounded-lg border-[#4062F9] border-2 mt-10">
         <form>
           <div className="flex flex-col items-center justify-center gap-y-2">
             <img
@@ -16,7 +18,7 @@ export function SignIn() {
               alt="My Care Force Logo"
               className="h-[70px] w-[70px] rounded-full"
             />
-            <span className="font-semibold text-center">
+            <span className="font-semibold text-center dark:text-white">
               MyCareForce - Login Enfermeiros
             </span>
           </div>

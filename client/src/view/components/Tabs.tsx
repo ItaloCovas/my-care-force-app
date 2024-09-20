@@ -34,7 +34,7 @@ export function Tabs() {
   return (
     <RdxTabs.Root className="flex h-full w-full flex-col " defaultValue="tab1">
       <RdxTabs.List
-        className="flex shrink-0 items-center justify-start w-full gap-x-10 text-zinc-600 dark:text-zinc-300"
+        className="flex shrink-0 items-center justify-start w-full gap-x-10 text-zinc-700 dark:text-white"
         aria-label="Manage your account"
       >
         <RdxTabs.Trigger

@@ -16,7 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className="relative">
-        <label className="">{label}</label>
+        <label className="dark:text-white">{label}</label>
         <input
           {...props}
           ref={ref}

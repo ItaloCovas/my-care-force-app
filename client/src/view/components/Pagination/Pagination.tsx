@@ -42,7 +42,7 @@ export function Pagination({
         {hasMore && (
           <>
             <PaginationItem>
-              <PaginationEllipsis />
+              <PaginationEllipsis className="dark:text-white" />
             </PaginationItem>
             <PaginationItem>
               <PaginationNext href="#" onClick={onNextPage} />
