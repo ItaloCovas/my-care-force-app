@@ -82,12 +82,12 @@ export function Tabs() {
                     />
                   ))
                 ) : (
-                  <p className="w-full text-center text-gray-500 flex items-center justify-center flex-col">
+                  <div className="w-full text-center text-gray-500 flex items-center justify-center flex-col">
                     <span className="dark:text-white font-bold mb-4">
                       Não há unidades médicas disponíveis.
                     </span>
                     <ImSad className="text-[#4062F9] w-8 h-8" />
-                  </p>
+                  </div>
                 )}
               </div>
             )}
@@ -116,17 +116,26 @@ export function Tabs() {
             {applicationsLoading ? (
               <Spinner />
             ) : (
-              <div className="flex flex-col gap-4 w-[500px] flex-wrap text-center">
-                {applications?.map((application) => {
-                  return (
-                    <ApplicationComponent
-                      healthUnitName={application.shift.healthUnit.name!}
-                      startDatetime={application.shift.startDatetime}
-                      endDatetime={application.shift.endDatetime}
-                      key={application.id}
-                    />
-                  );
-                })}
+              <div className="flex flex-col gap-4 min-w-[350px] flex-wrap text-center">
+                {applications && applications.length > 0 ? (
+                  applications?.map((application) => {
+                    return (
+                      <ApplicationComponent
+                        healthUnitName={application.shift.healthUnit.name!}
+                        startDatetime={application.shift.startDatetime}
+                        endDatetime={application.shift.endDatetime}
+                        key={application.id}
+                      />
+                    );
+                  })
+                ) : (
+                  <div className="w-full  text-gray-500 flex items-center justify-center flex-col">
+                    <span className="dark:text-white font-bold mb-4">
+                      Não há candidaturas disponíveis.
+                    </span>
+                    <ImSad className="text-[#4062F9] w-8 h-8" />
+                  </div>
+                )}
               </div>
             )}
           </motion.div>
