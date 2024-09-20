@@ -6,14 +6,22 @@ import { Application as ApplicationComponent } from "./Application";
 import { ShiftsDialog } from "./ShiftsDialog/ShiftsDialog";
 import { HealthUnit as HealthUnitType } from "../../shared/types/health-unit.type";
 import { useApplications } from "../../shared/context/ApplicationsContext/useApplications";
+import { Pagination } from "./Pagination/Pagination";
+import { usePagination } from "./Pagination/usePagination";
 
-interface TabsProps {
-  healthUnits: HealthUnitType[];
-  healthUnitsLoading: boolean;
-}
-
-export function Tabs({ healthUnits, healthUnitsLoading }: TabsProps) {
+export function Tabs() {
   const { applications, applicationsLoading } = useApplications();
+
+  const {
+    currentPage,
+    healthUnits,
+    healthUnitsLoading,
+    hasMore,
+    handlePageChange,
+    handleNextPage,
+    handlePreviousPage,
+  } = usePagination({ itemsPerPage: 10 });
+
   const tabContentVariants = useMemo(
     () => ({
       initial: { opacity: 0, y: 10 },
@@ -61,8 +69,8 @@ export function Tabs({ healthUnits, healthUnitsLoading }: TabsProps) {
             {healthUnitsLoading ? (
               <Spinner />
             ) : (
-              <div className="flex flex-wrap gap-4 text-center">
-                {healthUnits?.map((healthUnit) => {
+              <div className="flex justify-center md:justify-start flex-wrap gap-4 text-center">
+                {healthUnits?.map((healthUnit: HealthUnitType) => {
                   return (
                     <ShiftsDialog
                       name={healthUnit.name}
@@ -71,6 +79,13 @@ export function Tabs({ healthUnits, healthUnitsLoading }: TabsProps) {
                     />
                   );
                 })}
+                <Pagination
+                  currentPage={currentPage}
+                  hasMore={hasMore}
+                  onPageChange={handlePageChange}
+                  onNextPage={handleNextPage}
+                  onPreviousPage={handlePreviousPage}
+                />
               </div>
             )}
           </motion.div>
