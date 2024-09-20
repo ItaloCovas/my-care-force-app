@@ -8,6 +8,7 @@ import { HealthUnit as HealthUnitType } from "../../shared/types/health-unit.typ
 import { useApplications } from "../../shared/context/ApplicationsContext/useApplications";
 import { Pagination } from "./Pagination/Pagination";
 import { usePagination } from "./Pagination/usePagination";
+import { ImSad } from "react-icons/im";
 
 export function Tabs() {
   const { applications, applicationsLoading } = useApplications();
@@ -72,15 +73,22 @@ export function Tabs() {
               </div>
             ) : (
               <div className="flex justify-center md:justify-start flex-wrap gap-4 text-center mb-10">
-                {healthUnits?.map((healthUnit: HealthUnitType) => {
-                  return (
+                {healthUnits && healthUnits.length > 0 ? (
+                  healthUnits.map((healthUnit: HealthUnitType) => (
                     <ShiftsDialog
                       name={healthUnit.name}
                       id={healthUnit.id}
                       key={healthUnit.id}
                     />
-                  );
-                })}
+                  ))
+                ) : (
+                  <p className="w-full text-center text-gray-500 flex items-center justify-center flex-col">
+                    <span className="dark:text-white font-bold mb-4">
+                      Não há unidades de saúde disponíveis.
+                    </span>
+                    <ImSad className="text-[#4062F9] w-8 h-8" />
+                  </p>
+                )}
               </div>
             )}
             <Pagination
