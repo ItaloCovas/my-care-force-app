@@ -84,7 +84,7 @@ export function Tabs() {
                 ) : (
                   <p className="w-full text-center text-gray-500 flex items-center justify-center flex-col">
                     <span className="dark:text-white font-bold mb-4">
-                      Não há unidades de saúde disponíveis.
+                      Não há unidades médicas disponíveis.
                     </span>
                     <ImSad className="text-[#4062F9] w-8 h-8" />
                   </p>
